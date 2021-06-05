@@ -20,6 +20,11 @@ module.exports = async (req, res, next) => {
         }
     }
 
+    // 静态文件
+    if (req.fixUrl.indexOf('/api') != 0) {
+        return next()
+    }
+
     if (type) {
 
         // 白名单直接过

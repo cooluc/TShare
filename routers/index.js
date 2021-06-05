@@ -1,10 +1,11 @@
 const glob = require("glob")
 const router = require('express').Router();
+const path = require('path');
 
 const fix = "controllers";
 
 // 获取所有控制器文件
-const path = glob.sync(fix + "/**")
+const pathInfo = glob.sync(fix + "/**")
 
 // 设置路由前缀
 const routingPrefix = '/api'
@@ -15,7 +16,7 @@ const forbidden = (req, res) => {
 }
 
 // 遍历控制器
-path.forEach(ele => {
+pathInfo.forEach(ele => {
     if (/\.js$/.test(ele)) {
         // 获取所有控制器方法
         let e = require('../' + ele)
@@ -54,6 +55,8 @@ path.forEach(ele => {
     }
 })
 
-router.use('*', forbidden)
+router.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'))
+})
 console.log('Route successfully mounted')
 module.exports = router

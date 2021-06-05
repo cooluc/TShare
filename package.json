@@ -11,6 +11,7 @@
     "fs": "0.0.1-security",
     "glob": "^7.1.7",
     "mongoose": "^5.12.13",
+    "path": "^0.12.7",
     "redis": "^3.1.2",
     "request": "^2.88.2",
     "request-ip": "^2.1.3"
