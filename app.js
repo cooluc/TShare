@@ -1,7 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { port } = require('./data/config');
 const app = express();
+app.use(cors());
 
 // 解析json
 app.use(bodyParser.json({ limit: '50mb' }));

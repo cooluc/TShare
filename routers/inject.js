@@ -9,13 +9,26 @@ module.exports = async (req, res, next) => {
     req.ip = requestIp.getClientIp(req).replace('::ffff:', '')
     req.time = new Date()
     req.fixUrl = req.originalUrl.split('?')[0]
-
+    res.back = (result) => {
+        res.json({
+            status: 20000,
+            result: result,
+            errMsg: null
+        })
+    }
+    res.err = (err, errCode = 20200) => {
+        res.json({
+            status: errCode,
+            result: null,
+            errMsg: err
+        })
+    }
     // 路由白名单
     let type = false
     for (let index in whiteUrl) {
         let ele = whiteUrl[index]
         const reg = new RegExp(ele.reg)
-        if (reg.test(req.fixUrl) && e.method.toUpperCase() == ele.method) {
+        if (reg.test(req.fixUrl) && req.method.toUpperCase() == ele.method) {
             type = true
         }
     }

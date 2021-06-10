@@ -28,14 +28,9 @@ module.exports = {
     // 访客白名单url
     whiteUrl: [
         {
-            name: '用户登录获取挑战参数',
-            method: 'GET',
-            reg: '/^api\/login$/'
-        },
-        {
             name: '用户登录提交登录参数',
             method: 'PUT',
-            reg: '/^api\/login$/'
+            reg: '^\/api\/login$'
         }
     ]
 }
